@@ -20,7 +20,7 @@ export default function Footer() {
           </svg>
         </a>
         <a
-          href="https://tiktok.com/jaagastudios"
+          href="https://www.tiktok.com/@jaagastudios"
           target="_blank"
           rel="noopener noreferrer"
           className="group"
