@@ -138,14 +138,14 @@ export default function Home() {
   const ourWorkScale = useTransform(ourWorkScroll, [0, 0.5, 1], [1, 1, 0.95]);
   const ourWorkOpacity = useTransform(
     ourWorkScroll,
-    [0, 0.1, 0.2, 0.8, 1],
-    [0, 0.5, 1, 0.25, 0.25],
+    [0, 0.35, 0.5, 0.8, 1],
+    [0, 0, 1, 1, 0],
   );
   // Blur starts high when entering viewport, becomes clear when fully in view and stays clear
   const ourWorkBlurRadius = useTransform(
     ourWorkScroll,
-    [0, 0.2, 0, 1],
-    [12, 6, 0, 0],
+    [0, 0.35, 0.5, 1],
+    [20, 15, 0, 0],
   );
   const ourWorkY = useTransform(ourWorkScroll, [0.3, 1], ["0%", "40%"]);
   const ourWorkFilter = useMotionTemplate`blur(${ourWorkBlurRadius}px)`;
