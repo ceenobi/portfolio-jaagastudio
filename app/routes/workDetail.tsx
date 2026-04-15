@@ -93,34 +93,36 @@ export default function WorkDetail() {
   return (
     <div
       ref={containerRef}
-      className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black min-h-screen relative overflow-hidden"
+      className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black min-h-screen relative w-full flex flex-col"
     >
       {/* Cinematic Background Focal Text Layer */}
-      <motion.div
-        style={{ x: bgTextX, opacity: bgTextOpacity, willChange: "transform, opacity" }}
-        className="fixed inset-0 flex items-center justify-center z-0 pointer-events-none select-none mix-blend-difference"
-      >
-        <h2 className="text-[30vw] font-black uppercase text-TextWhite leading-none whitespace-nowrap">
-          {selectedWork?.format}
-        </h2>
-      </motion.div>
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <motion.div
+          style={{ x: bgTextX, opacity: bgTextOpacity, willChange: "transform, opacity" }}
+          className="absolute inset-0 flex items-center justify-center select-none mix-blend-difference"
+        >
+          <h2 className="text-[20vw] md:text-[25vw] lg:text-[30vw] font-black uppercase text-TextWhite leading-none whitespace-nowrap">
+            {selectedWork?.format}
+          </h2>
+        </motion.div>
+      </div>
 
       <Suspense fallback={<SuspenseUi />}>
         <PageWrapper>
           <PageSection index={0}>
             <motion.div
               style={{ y: titleY, opacity: titleOpacity, scale: titleScale, willChange: "transform, opacity" }}
-              className="mt-32 md:mt-48 flex flex-col items-center justify-center text-center relative z-10"
+              className="mt-20 md:mt-48 flex flex-col items-center justify-center text-center relative z-10 w-full"
             >
               <motion.span
                 initial={{ opacity: 0, letterSpacing: "0.2em" }}
                 animate={{ opacity: 1, letterSpacing: "0.4em" }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-SoftApricot text-xs font-bold uppercase mb-6"
+                className="text-SoftApricot text-[10px] md:text-xs font-bold uppercase mb-4"
               >
                 Case Study
               </motion.span>
-              <h1 className="text-6xl md:text-7xl lg:text-[7rem] font-black uppercase tracking-tighter leading-[0.8] mb-12 font-Grotesk">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] font-black uppercase tracking-tighter leading-none md:leading-[0.8] mb-8 md:mb-12 font-Grotesk wrap-break-word w-full px-4">
                 {selectedWork?.title.split(" ").map((word, i) => (
                   <span key={i} className="block last:text-white/50">
                     {word}
@@ -130,22 +132,13 @@ export default function WorkDetail() {
             </motion.div>
           </PageSection>
 
-          {/* <PageSection index={1}>
-            <div className="max-w-[1350px] mx-auto px-6 md:px-12">
-              <GradualSpacing
-                text={selectedWork?.desc.split("\n\n")[0] || ""}
-                className="text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-white/90"
-              />
-            </div>
-          </PageSection> */}
-
           <PageSection index={2}>
             <motion.div
               style={{ scale: videoScale, rotateX: videoRotate, willChange: "transform" }}
-              className="max-w-[1400px] mx-auto px-6 md:px-12 my-32 relative z-10"
+              className="w-full mx-auto my-16 md:my-32 relative z-10 perspective-1000"
               data-hover-text="DRAG / PLAY"
             >
-              <div className="relative group rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] perspective-1000 h-[450px] md:h-[650px]">
+              <div className="relative group rounded-3xl md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] w-full aspect-4/3 md:aspect-video lg:aspect-21/9">
                 <video
                   ref={videoRef}
                   src={selectedWork?.video}
@@ -160,14 +153,14 @@ export default function WorkDetail() {
                 <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
                 {/* Apple-style Bottom Controls */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
+                <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-4 z-30 w-[90%] md:w-auto justify-center">
                   {/* Progress Pill */}
-                  <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full h-8 md:h-12 flex items-center px-6 gap-2 group/progress relative overflow-hidden transition-all duration-500 hover:bg-white/15">
+                  <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full h-10 md:h-12 flex items-center px-4 md:px-6 gap-2 group/progress relative overflow-hidden transition-all duration-500 hover:bg-white/15">
                     {/* Scene Dots */}
                     {[1, 2, 3, 4, 5, 6].map((i) => (
                       <div
                         key={i}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 hidden md:block ${
                           progress > (i / 6) * 100
                             ? "bg-TextWhite scale-125"
                             : "bg-white/20"
@@ -178,8 +171,11 @@ export default function WorkDetail() {
                     <motion.div
                       initial={false}
                       animate={{ x: `${(progress / 100) * 80}px` }}
-                      className="absolute bottom-2 left-6 h-0.5 w-6 bg-white rounded-full opacity-0 group-hover/progress:opacity-50 transition-opacity"
+                      className="absolute bottom-2 left-6 h-0.5 w-[calc(100%-48px)] bg-white rounded-full opacity-0 group-hover/progress:opacity-50 transition-opacity hidden md:block"
                     />
+                    <div className="md:hidden text-xs font-mono text-white/80">
+                      {Math.round(progress)}%
+                    </div>
                   </div>
 
                   {/* Play/Pause Button */}
@@ -249,8 +245,8 @@ export default function WorkDetail() {
           </PageSection>
 
           <PageSection index={3}>
-            <div className="max-w-[1350px] mx-auto px-6 md:px-12 pb-60 relative z-10">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+            <div className="w-full pb-32 md:pb-60 relative z-10 px-2 sm:px-0">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
                 {/* Left: Summary */}
                 <div className="lg:col-span-8">
                   <motion.div
@@ -258,17 +254,17 @@ export default function WorkDetail() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="space-y-12"
+                    className="space-y-8 md:space-y-12"
                   >
                     <div>
-                      <span className="text-SoftApricot text-[10px] mb-8 block opacity-40 uppercase tracking-[0.4em] font-Grotesk">
+                      <span className="text-SoftApricot text-[10px] mb-6 md:mb-8 block opacity-40 uppercase tracking-[0.4em] font-Grotesk">
                         01 / OVERVIEW
                       </span>
                       <div className="space-y-6">
                         {selectedWork?.desc.split("\n\n").map((para, i) => (
                           <p
                             key={i}
-                            className="text-xl md:text-2xl text-white/80 leading-relaxed font-light tracking-tight"
+                            className="text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed font-light tracking-tight"
                           >
                             {para}
                           </p>
@@ -276,11 +272,11 @@ export default function WorkDetail() {
                       </div>
                     </div>
                     {selectedWork?.credit && (
-                      <div className="w-full h-[600px] rounded-2xl">
+                      <div className="w-full h-auto max-h-[300px] md:max-h-[600px] rounded-2xl overflow-hidden mt-8 md:mt-12 bg-white/5">
                         <img
                           src={selectedWork.credit}
-                          alt="testimonial"
-                          className="w-full h-full rounded-2xl"
+                          alt="project credit"
+                          className="w-full h-full object-cover rounded-2xl"
                           loading="lazy"
                           decoding="async"
                         />
@@ -300,13 +296,13 @@ export default function WorkDetail() {
                       ease: [0.16, 1, 0.3, 1],
                       delay: 0.2,
                     }}
-                    className="space-y-12"
+                    className="space-y-8 md:space-y-12 pt-8 lg:pt-0"
                   >
                     <div>
-                      <span className="text-SoftApricot font-mono text-[10px] mb-12 block opacity-40 uppercase tracking-[0.4em]">
+                      <span className="text-SoftApricot font-mono text-[10px] mb-6 md:mb-12 block opacity-40 uppercase tracking-[0.4em]">
                         02 / HIGHLIGHTS
                       </span>
-                      <div className="flex flex-wrap gap-4">
+                      <div className="flex flex-wrap gap-3 md:gap-4">
                         {selectedWork?.stack?.map((item, i) => (
                           <motion.span
                             key={item}
@@ -314,7 +310,7 @@ export default function WorkDetail() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 + i * 0.05 }}
-                            className="px-6 py-3 rounded-full bg-white/5 border border-white/5 text-[10px] font-bold tracking-[0.2em] uppercase text-white/60 hover:border-SoftApricot/30 hover:text-white hover:bg-white/10 transition-all cursor-default"
+                            className="px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 border border-white/5 text-[10px] font-bold tracking-widest md:tracking-[0.2em] uppercase text-white/60 hover:border-SoftApricot/30 hover:text-white hover:bg-white/10 transition-all cursor-default w-full sm:w-auto text-center md:text-left"
                           >
                             {item}
                           </motion.span>

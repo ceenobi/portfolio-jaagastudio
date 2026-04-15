@@ -41,7 +41,7 @@ export default function Work() {
   };
 
   return (
-    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black py-4">
+    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black py-4 relative overflow-clip w-full flex flex-col">
       <Suspense fallback={<SuspenseUi />}>
         <PageWrapper>
           <PageSection index={0}>

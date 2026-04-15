@@ -198,7 +198,7 @@ export default function Home() {
   const servicesYOut = useTransform(transitionScroll, [0, 1], ["0%", "-10%"]);
 
   return (
-    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black overflow-hidden relative">
+    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black overflow-clip w-full flex flex-col relative">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen">
         <motion.div
@@ -226,7 +226,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 uppercase font-Grotesk mix-blend-difference"
+                      className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 uppercase font-Grotesk mix-blend-difference wrap-break-word w-full px-2"
                     >
                       Jaaga Studios
                     </motion.h1>
@@ -435,6 +435,119 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          {/* Section 8 Left: Sticky Intro */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="text-SoftApricot text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-6 block">
+                004 / Engineering Music Cinema
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white/95 font-Grotesk mb-8 leading-[1.1]">
+                The Audio-Visual Blueprint
+              </h2>
+              <div className="w-12 h-px bg-SoftApricot/30 mb-8" />
+              <div className="space-y-6 text-lg md:text-xl text-white/70 leading-relaxed font-light tracking-tight">
+                <p>
+                  <strong className="text-white font-medium">The Rhythm-to-Render Pipeline: </strong>
+                  At Jaaga Studios, we do not just react to a beat; we
+                  reverse-engineer the frequency.
+                </p>
+                <p>
+                  To match the heavy cultural weight of contemporary Afrobeats
+                  and the global standard set by artists like Wizkid, Asake,
+                  Rema, and Odumodublvck, our visual pipeline treats audio as
+                  the baseline for digital physics. This explains our exact process to A&R reps and record labels.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Section 8 Right: The Pipeline Steps */}
+          <div className="lg:col-span-7 flex flex-col gap-8 md:gap-12 lg:pt-12">
+            {[
+              {
+                title: "Audio Deconstruction",
+                desc: "We break down the track's percussive heavy-lifting and vocal cadences to build a visual shot list that matches the exact BPM and psychological energy of the song.",
+              },
+              {
+                title: "AI-Native Pre-Visualization",
+                desc: "We generate rapid, high-fidelity storyboards and environmental concepts, allowing artists and labels to see the world-building before rendering begins.",
+              },
+              {
+                title: "The Visual Drop (Execution)",
+                desc: "We deploy our Top 1% compositing arsenal to build hyper-luxury environments, dynamic vehicle chases, and high-stakes street narratives that elevate the track from a simple audio file into a global cultural moment.",
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group p-8 md:p-12 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+              >
+                <div className="absolute top-4 md:top-8 right-6 md:right-10 text-white/5 font-black text-6xl md:text-8xl select-none font-mono pointer-events-none">
+                  0{index + 1}
+                </div>
+                <div className="relative z-10 space-y-4">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-white/60 leading-relaxed font-light max-w-xl">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section IX: Key Art & Poster Division */}
+      <section className="relative w-full max-w-[1500px] mx-auto px-6 md:px-12 py-20 md:py-32 mb-20 md:mb-32">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-[#050505] border border-white/10 py-24 md:py-32 px-6 md:px-20 text-center shadow-[0_100px_200px_-50px_rgba(0,0,0,1)]"
+        >
+          {/* Subtle glow orb behind */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] max-w-3xl bg-SoftApricot/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+          
+          <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+            <span className="text-SoftApricot text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-8 md:mb-12 block">
+              005 / Key Art & Poster Division
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light italic text-white/90 leading-tight tracking-tight mb-16 md:mb-24">
+              "A film or a track does not exist until the promotional artwork stops the scroll."
+            </h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 text-left pt-12 md:pt-16 border-t border-white/10">
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-6 uppercase tracking-widest text-center lg:text-left font-Grotesk">
+                  Cinematic Posters
+                </h3>
+                <p className="text-base md:text-lg text-white/60 leading-relaxed font-light">
+                  The visual campaign starts long before the video drops. Jaaga Studios engineers high-retention, cinematic key art and promotional posters that command immediate authority.
+                </p>
+              </div>
+              <div className="lg:mt-14">
+                <p className="text-base md:text-lg text-white/60 leading-relaxed font-light">
+                  From freezing the chaotic energy of Lagos traffic to designing high-fashion, neon-drenched heist announcements, our posters are built with the same rigorous 3D lighting and compositing standards as our motion pictures. We design the visual hook that makes the global audience click <strong className="text-white font-medium">"Play"</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Shared Contact Footer */}

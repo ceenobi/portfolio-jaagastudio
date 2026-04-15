@@ -178,7 +178,7 @@ export default function Contact() {
     <motion.div
       ref={containerRef}
       style={{ backgroundColor: bgColor }}
-      className="min-h-screen overflow-x-clip text-white selection:bg-SoftApricot selection:text-black py-4 transition-colors duration-700 ease-out"
+      className="min-h-screen overflow-clip text-white selection:bg-SoftApricot selection:text-black py-4 transition-colors duration-700 ease-out flex flex-col w-full relative"
     >
       <PageWrapper>
         {/* Section 0: Hero */}

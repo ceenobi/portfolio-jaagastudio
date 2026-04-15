@@ -90,14 +90,14 @@ export default function Profile() {
 
   // Section 5 (Contact CTA) transitions - "Subtle Rise and Lock"
   const cardY = useTransform(scrollYProgress, [0.8, 0.98], [60, 0]);
-  const cardOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0, 1]);
+  const cardOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0.7, 1]);
   const cardScale = useTransform(scrollYProgress, [0.8, 0.98], [0.98, 1]);
 
   return (
     <motion.div
       ref={containerRef}
       style={{ backgroundColor: bgColor }}
-      className="min-h-screen overflow-x-clip text-TextWhite selection:bg-SoftApricot selection:text-black py-4 transition-colors duration-700 ease-out"
+      className="min-h-screen overflow-clip text-TextWhite selection:bg-SoftApricot selection:text-black py-4 transition-colors duration-700 ease-out flex flex-col w-full relative"
     >
       <PageWrapper>
         <motion.div
@@ -422,7 +422,7 @@ export default function Profile() {
             willChange: "transform, opacity",
           }}
         >
-          <PageSection index={5} className="">
+          <PageSection index={5}>
             <Suspense fallback={<SuspenseUi />}>
               <ContactCTA
                 title="Want to build something together?"
