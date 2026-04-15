@@ -50,7 +50,7 @@ export default function ContactCTA({
                   transition: { duration: 0.8, ease: appleEase },
                 },
               }}
-              className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-VanillaCustard inline-block font-Grotesk"
+              className="text-4xl md:text-5xl lg:text-8xl font-black uppercase tracking-tighter text-VanillaCustard inline-block font-Grotesk"
             >
               {word}
             </motion.span>

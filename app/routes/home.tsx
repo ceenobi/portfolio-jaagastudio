@@ -95,14 +95,14 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
         style={{ y: textY }}
         className={`absolute top-auto bottom-4 md:bottom-12 pointer-events-none flex flex-col z-20 ${
           isEven
-            ? "left-6 -right-6 md:left-auto md:-right-24 text-left md:text-right items-start md:items-end"
-            : "right-6 -left-6 md:right-auto md:-left-24 text-right md:text-left items-end md:items-start"
+            ? "left-4 right-4 md:left-auto md:-right-24 text-left md:text-right items-start md:items-end"
+            : "right-4 left-4 md:right-auto md:-left-24 text-right md:text-left items-end md:items-start"
         }`}
       >
         <p className="text-VanillaCustard text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
           {work.format || "Selected Work"}
         </p>
-        <h3 className="text-5xl md:text-7xl lg:text-[7rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk">
+        <h3 className="text-5xl md:text-7xl lg:text-[7rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk wrap-break-word break-all md:wrap-break-word">
           {work.title}
         </h3>
       </motion.div>
@@ -198,7 +198,7 @@ export default function Home() {
   const servicesYOut = useTransform(transitionScroll, [0, 1], ["0%", "-10%"]);
 
   return (
-    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black overflow-clip w-full flex flex-col relative">
+    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black overflow-x-hidden w-full flex flex-col relative">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen">
         <motion.div
@@ -214,7 +214,7 @@ export default function Home() {
               overlayContent={
                 <div className="relative z-20 text-center text-TextWhite px-4">
                   {/* Dark lens overlay for text readability */}
-                  <div className="absolute inset-0 -inset-x-20 -inset-y-10 bg-black/20 blur-3xl rounded-full scale-150 pointer-events-none" />
+                  <div className="absolute inset-0 bg-black/20 blur-3xl rounded-full scale-150 pointer-events-none" />
 
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -226,7 +226,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 uppercase font-Grotesk mix-blend-difference wrap-break-word w-full px-2"
+                      className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-4 uppercase font-Grotesk mix-blend-difference wrap-break-word break-all md:wrap-break-word w-full px-2"
                     >
                       Jaaga Studios
                     </motion.h1>
@@ -286,9 +286,12 @@ export default function Home() {
             </motion.h2>
             <motion.p
               style={{ y: aboutTextY }}
-              className="text-3xl md:text-5xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4 font-Grotesk"
+              className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4 font-Grotesk"
             >
-              We don’t just render; we architect. We anchor raw African narratives with heavy cinematic rigor and AI-native scale. We don't chase the future—we build the universes where it lives. VFX. World-Building. Absolute Command.
+              We don’t just render; we architect. We anchor raw African
+              narratives with heavy cinematic rigor and AI-native scale. We
+              don't chase the future—we build the universes where it lives. VFX.
+              World-Building. Absolute Command.
               <br />
               <span className="text-white/40 block mt-8 text-2xl md:text-4xl font-sans">
                 That’s the mandate.
@@ -328,7 +331,7 @@ export default function Home() {
             002 / Expertise
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 md:gap-12 lg:gap-16">
             {SERVICES.map((service, idx) => (
               <motion.div
                 key={service.title}
@@ -366,11 +369,11 @@ export default function Home() {
       <section
         ref={workRef}
         id="work"
-        className="relative z-10 w-full bg-DarkBg rounded-t-[3rem] md:rounded-t-[5rem] -mt-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+        className="relative z-10 w-full bg-DarkBg rounded-t-[3rem] md:rounded-t-[5rem] -mt-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-x-hidden"
       >
         {/* Layer 1 (Background): fixed Focal Text */}
         {/* It pins to the top and stays behind the cards until the section ends */}
-        <div className="fixed top-0 h-screen w-full flex items-center justify-center pointer-events-none z-0">
+        <div className="fixed top-0 h-screen w-full flex items-center justify-center pointer-events-none z-0 overflow-hidden">
           <motion.div
             style={{
               scale: ourWorkScale,
@@ -437,7 +440,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-white/5">
+      <section className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-white/5 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           {/* Section 8 Left: Sticky Intro */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
@@ -456,7 +459,9 @@ export default function Home() {
               <div className="w-12 h-px bg-SoftApricot/30 mb-8" />
               <div className="space-y-6 text-lg md:text-xl text-white/70 leading-relaxed font-light tracking-tight">
                 <p>
-                  <strong className="text-white font-medium">The Rhythm-to-Render Pipeline: </strong>
+                  <strong className="text-white font-medium">
+                    The Rhythm-to-Render Pipeline:{" "}
+                  </strong>
                   At Jaaga Studios, we do not just react to a beat; we
                   reverse-engineer the frequency.
                 </p>
@@ -464,7 +469,8 @@ export default function Home() {
                   To match the heavy cultural weight of contemporary Afrobeats
                   and the global standard set by artists like Wizkid, Asake,
                   Rema, and Odumodublvck, our visual pipeline treats audio as
-                  the baseline for digital physics. This explains our exact process to A&R reps and record labels.
+                  the baseline for digital physics. This explains our exact
+                  process to A&R reps and record labels.
                 </p>
               </div>
             </motion.div>
@@ -491,7 +497,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 1,
+                  delay: index * 0.15,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="relative group p-8 md:p-12 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-colors shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
               >
                 <div className="absolute top-4 md:top-8 right-6 md:right-10 text-white/5 font-black text-6xl md:text-8xl select-none font-mono pointer-events-none">
@@ -512,7 +522,7 @@ export default function Home() {
       </section>
 
       {/* Section IX: Key Art & Poster Division */}
-      <section className="relative w-full max-w-[1500px] mx-auto px-6 md:px-12 py-20 md:py-32 mb-20 md:mb-32">
+      <section className="relative w-full max-w-[1500px] mx-auto px-6 md:px-12 py-20 md:py-32 mb-20 md:mb-32 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -522,27 +532,35 @@ export default function Home() {
         >
           {/* Subtle glow orb behind */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] max-w-3xl bg-SoftApricot/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
-          
+
           <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
             <span className="text-SoftApricot text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-8 md:mb-12 block">
               005 / Key Art & Poster Division
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light italic text-white/90 leading-tight tracking-tight mb-16 md:mb-24">
-              "A film or a track does not exist until the promotional artwork stops the scroll."
+              "A film or a track does not exist until the promotional artwork
+              stops the scroll."
             </h2>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 text-left pt-12 md:pt-16 border-t border-white/10">
               <div>
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-6 uppercase tracking-widest text-center lg:text-left font-Grotesk">
                   Cinematic Posters
                 </h3>
                 <p className="text-base md:text-lg text-white/60 leading-relaxed font-light">
-                  The visual campaign starts long before the video drops. Jaaga Studios engineers high-retention, cinematic key art and promotional posters that command immediate authority.
+                  The visual campaign starts long before the video drops. Jaaga
+                  Studios engineers high-retention, cinematic key art and
+                  promotional posters that command immediate authority.
                 </p>
               </div>
               <div className="lg:mt-14">
                 <p className="text-base md:text-lg text-white/60 leading-relaxed font-light">
-                  From freezing the chaotic energy of Lagos traffic to designing high-fashion, neon-drenched heist announcements, our posters are built with the same rigorous 3D lighting and compositing standards as our motion pictures. We design the visual hook that makes the global audience click <strong className="text-white font-medium">"Play"</strong>.
+                  From freezing the chaotic energy of Lagos traffic to designing
+                  high-fashion, neon-drenched heist announcements, our posters
+                  are built with the same rigorous 3D lighting and compositing
+                  standards as our motion pictures. We design the visual hook
+                  that makes the global audience click{" "}
+                  <strong className="text-white font-medium">"Play"</strong>.
                 </p>
               </div>
             </div>

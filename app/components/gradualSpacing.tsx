@@ -38,7 +38,7 @@ export function GradualSpacing({
   return (
     <div 
       ref={ref} 
-      className={`flex flex-wrap items-center justify-start whitespace-normal wrap-break-word leading-tight ${className}`}
+      className={`flex flex-wrap items-center justify-start whitespace-normal wrap-break-word break-all md:wrap-break-word leading-tight ${className}`}
     >
       <AnimatePresence>
         {text.split(" ").map((word, wordIdx) => {

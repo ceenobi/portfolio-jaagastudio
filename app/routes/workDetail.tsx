@@ -122,7 +122,7 @@ export default function WorkDetail() {
               >
                 Case Study
               </motion.span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] font-black uppercase tracking-tighter leading-none md:leading-[0.8] mb-8 md:mb-12 font-Grotesk wrap-break-word w-full px-4">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] font-black uppercase tracking-tighter leading-none md:leading-[0.8] mb-8 md:mb-12 font-Grotesk wrap-break-word break-all md:wrap-break-word w-full px-4">
                 {selectedWork?.title.split(" ").map((word, i) => (
                   <span key={i} className="block last:text-white/50">
                     {word}

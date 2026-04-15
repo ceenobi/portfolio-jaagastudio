@@ -11,7 +11,8 @@
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-PastelPetal: #ffc6d9;
-  --color-SoftApricot: #ffe1c6;
+  --color-SoftApricot: #ffb703;
+  /* --color-SoftApricot: #ffe1c6; */
   --color-VanillaCustard: #fff7ae;
   --color-BlackBerryCream: #48284a;
   --color-DustyMauve: #916c80;
@@ -32,7 +33,7 @@
 html,
 body {
   font-family: "Inter", sans-serif;
-  @apply bg-white dark:bg-DarkBg;
+  @apply bg-DarkBg;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
