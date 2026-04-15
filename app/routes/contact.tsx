@@ -7,13 +7,20 @@ import ImageComponent from "~/components/imageComponent";
 
 export function meta() {
   return [
-    { title: "Contact Jaaga Studio — Let's Create Something Extraordinary Together" },
+    {
+      title:
+        "Contact Jaaga Studio — Let's Create Something Extraordinary Together",
+    },
     {
       name: "description",
       content:
         "Get in touch with Jaaga Studio, a specialized VFX Designer in Lagos and 3D Motion Designer. Available for new business, collaborations, and high-end creative direction.",
     },
-    { name: "keywords", content: "Vfx designer lagos, creative designer, 3d motion designer, contact VFX, hire motion designer" },
+    {
+      name: "keywords",
+      content:
+        "Vfx designer lagos, creative designer, 3d motion designer, contact VFX, hire motion designer",
+    },
   ];
 }
 
@@ -83,8 +90,8 @@ export async function action({ request }: { request: Request }) {
         },
         body: JSON.stringify({
           sender: { name: name, email: email },
-          to: [{ email: "cobimbachu@gmail.com", name: "Jaaga Studio" }],
-          subject: `Portfolio Inquiry from ${name}`,
+          to: [{ email: "Petmastiffee@gmail.com", name: "Jaaga Studio" }],
+          subject: `Work Inquiry from ${name}`,
           htmlContent: emailHtml,
         }),
       });
@@ -104,7 +111,7 @@ export async function action({ request }: { request: Request }) {
       const resend = new Resend(resendApiKey);
       await resend.emails.send({
         from: "Portfolio Contact <onboarding@resend.dev>", // Requires verified domain in prod
-        to: "cobimbachu@gmail.com",
+        to: "Petmastiffee@gmail.com",
         subject: `New Inquiry from ${name}`,
         html: emailHtml,
       });
@@ -232,7 +239,7 @@ export default function Contact() {
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 bg-linear-to-tr from-white/5 to-white/20 backdrop-blur-md z-10 mix-blend-overlay"
                 />
-                <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/v1673425503/Fashion/679170_9PLP8_9520_004_100_0000_Light-520-Marina-Scarlet-Limited-Edition-Rouge-Lvres-Voile_xcrfai.jpg" />
+                <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/v1776177332/clientproject/havisClient/80e93e1bf36be47afb45bd818a6a2d74_tplv-tiktokx-cropcenter_1080_1080_ftbw5z.jpg" />
               </div>
             </motion.div>
 
@@ -289,10 +296,11 @@ export default function Contact() {
                       Email
                     </p>
                     <a
-                      href="mailto:cobimbachu@gmail.com"
+                      href="mailto:petmastiffee@gmail.com"
                       className="text-xl md:text-2xl font-medium text-white/90 hover:text-SoftApricot transition-colors"
+                      title="Email Jaaga Studios directly"
                     >
-                      jaagastudio@gmail.com
+                      Petmastiffee@gmail.com
                     </a>
                   </div>
                   <div>
@@ -409,7 +417,11 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    aria-label={isSubmitting ? "Sending your message" : "Send your message to Charles"}
+                    aria-label={
+                      isSubmitting
+                        ? "Sending your message"
+                        : "Send your message to Charles"
+                    }
                     className="mt-4 group relative self-start overflow-hidden rounded-full bg-white px-12 py-5 transition-transform duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     <span className="relative z-10 flex items-center gap-3 text-sm md:text-base font-bold text-black uppercase tracking-widest">

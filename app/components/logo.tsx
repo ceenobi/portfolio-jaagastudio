@@ -16,9 +16,9 @@ export default function Logo() {
     <Link
       to="/"
       viewTransition
-      className="inline-flex items-center gap-1 group transition-all duration-300"
+      className="inline-flex items-center gap-1 group transition-all duration-300 font-Grotesk"
     >
-      <div className="w-12 h-12 bg-DustyMauve rounded-full flex items-center justify-center shadow-lg border border-white/10 shrink-0">
+      <div className="w-12 h-12 bg-CrimsonRed rounded-full flex items-center justify-center shadow-lg border border-white/10 shrink-0">
         <h1 className="font-bold text-xl text-white">JS</h1>
       </div>
       <div
@@ -29,7 +29,7 @@ export default function Logo() {
         }`}
       >
         <h1 className="font-bold text-xl leading-none text-white whitespace-nowrap truncate">
-          JaagaStudios
+          JAAGA STUDIOS
         </h1>
       </div>
     </Link>

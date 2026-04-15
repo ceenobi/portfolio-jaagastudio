@@ -11,7 +11,6 @@ import { ArrowRight } from "lucide-react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import "@fontsource/kanit";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.png", type: "image/png" },
@@ -33,6 +32,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <Meta />
         <Links />
       </head>
@@ -70,7 +71,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center relative overflow-hidden selection:bg-SoftApricot selection:text-black">
+    <div className="min-h-screen bg-DarkBg text-white flex flex-col items-center justify-center relative overflow-hidden selection:bg-SoftApricot selection:text-black">
       {/* ── Background VFX ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_60%)] animate-pulse-slow" />

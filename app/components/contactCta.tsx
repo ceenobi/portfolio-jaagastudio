@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 interface ContactCTAProps {
   title?: string;
@@ -10,17 +10,17 @@ interface ContactCTAProps {
   isFullHeight?: boolean;
 }
 
-export default function ContactCTA({ 
-  title = "Got a vision?", 
+export default function ContactCTA({
+  title = "Got a vision?",
   className = "",
-  isFullHeight = false
+  isFullHeight = false,
 }: ContactCTAProps) {
   const shouldReduceMotion = useReducedMotion();
   const appleEase: [number, number, number, number] = [0.33, 1, 0.68, 1];
 
   return (
-    <section 
-      className={`px-6 text-center border-t border-white/10 relative z-10 bg-[#0a0a0a] flex flex-col items-center justify-center ${isFullHeight ? "min-h-screen py-0 border-none" : "py-40"} ${className}`}
+    <section
+      className={`px-6 text-center border-t border-white/10 relative z-10 bg-DarkBg flex flex-col items-center justify-center ${isFullHeight ? "min-h-screen py-0 border-none" : "py-40"} ${className}`}
     >
       <motion.div
         initial="hidden"
@@ -50,13 +50,13 @@ export default function ContactCTA({
                   transition: { duration: 0.8, ease: appleEase },
                 },
               }}
-              className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-VanillaCustard inline-block"
+              className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter text-VanillaCustard inline-block font-Grotesk"
             >
               {word}
             </motion.span>
           ))}
         </div>
-        
+
         <MotionLink
           to="/contact"
           prefetch="intent"

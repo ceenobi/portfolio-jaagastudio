@@ -57,7 +57,7 @@ export default function Menu({ links }: MenuProps) {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="z-100 flex items-center bg-DustyMauve text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl border border-white/5 h-12 pr-4 overflow-hidden cursor-pointer"
+        className="z-100 flex items-center bg-CrimsonRed text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl border border-white/5 h-12 pr-4 overflow-hidden cursor-pointer"
       >
         <div className="flex items-center gap-3 h-full pl-6 pr-2">
           <span className="text-xs font-bold tracking-[0.2em] uppercase">
@@ -108,7 +108,7 @@ export default function Menu({ links }: MenuProps) {
             {/* Menu Card */}
             <motion.div
               variants={cardVariants}
-              className="relative w-full max-w-[1200px] m-auto bg-VanillaCustard rounded-[3rem] p-10 lg:p-20 shadow-[0_100px_80px_rgba(0,0,0,0.1)] pointer-events-auto flex flex-col md:flex-row justify-between"
+              className="relative w-full max-w-[1200px] m-auto bg-AmberStreet rounded-[3rem] p-10 lg:p-20 shadow-[0_100px_80px_rgba(0,0,0,0.1)] pointer-events-auto flex flex-col md:flex-row justify-between"
             >
               <div className="flex flex-col gap-6 lg:gap-10">
                 {links.map((link) => (
@@ -121,7 +121,7 @@ export default function Menu({ links }: MenuProps) {
                         `text-[4rem] lg:text-[7rem] font-bold leading-none tracking-tight block transition-all duration-500 will-change-transform active:scale-95 ${
                           isActive
                             ? "text-BlackBerryCream"
-                            : "text-[#D0C0B0] hover:text-BlackBerryCream hover:pl-4"
+                            : "text-[#955413] hover:text-BlackBerryCream hover:pl-4"
                         }`
                       }
                     >

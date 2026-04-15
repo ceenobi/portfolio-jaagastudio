@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="relative z-30 bg-[#0a0a0a] border-t border-white/5 px-4 py-6 space-y-4">
+    <footer className="relative z-30 bg-DarkBg border-t border-white/5 px-4 py-6 space-y-4">
       <div className="max-w-[1200px] mx-auto flex justify-center items-center gap-6">
         <a
           href="https://instagram.com"

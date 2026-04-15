@@ -441,15 +441,15 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.11.tgz#a269e055e40e2f45873bae9d1a2fdccbd314ea3f"
   integrity sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==
 
+"@fontsource-variable/host-grotesk@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/host-grotesk/-/host-grotesk-5.2.8.tgz#42c310288fc6c85e388162dbf19bd82b626f4e2c"
+  integrity sha512-9rZBY0DY6eFKVC6+lvYga4tGfYO4pV8gZH2/Zp37KDlyQdR3KfCvh4GvDHCbWQd93OuaaYiPVtd8BGtoMykNQg==
+
 "@fontsource-variable/inter@^5.2.8":
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/@fontsource-variable/inter/-/inter-5.2.8.tgz#29b11476f5149f6a443b4df6516e26002d87941a"
   integrity sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ==
-
-"@fontsource/kanit@^5.2.8":
-  version "5.2.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/kanit/-/kanit-5.2.8.tgz#4ddd85eaed7f0735889868d6428b64cd1fc628e9"
-  integrity sha512-vISPW1kRoy+BTqplYCymdYRJcNFGmlPxWXqo178eGPe7P+lMX24JiQOxWdI4HLWR+0ROUzaFneXy/v1I9u99yg==
 
 "@hono/node-server@^1.19.9":
   version "1.19.12"
@@ -2991,6 +2991,11 @@ kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
+
+lenis@^1.3.23:
+  version "1.3.23"
+  resolved "https://registry.yarnpkg.com/lenis/-/lenis-1.3.23.tgz#3473a956c829335682a6384df019d9a66457881c"
+  integrity sha512-YxYq3TJqj9sJNv0V9SkyQHejt14xwyIwgDaaMK89Uf9SxQfIszu+gTQSSphh6BWlLTNVKvvXAGkg+Zf+oFIevg==
 
 lightningcss-android-arm64@1.32.0:
   version "1.32.0"

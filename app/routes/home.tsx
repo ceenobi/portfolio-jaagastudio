@@ -11,9 +11,9 @@ import { ArrowUpRight } from "lucide-react";
 import { SERVICES, WORKS, HERO_VIDEOS } from "~/lib/constants";
 
 const VideoCarousel = lazy(() => import("~/components/videoComponent"));
-import ContactCTA from "~/components/contactCta";
+const ContactCTA = lazy(() => import("~/components/contactCta"));
 import { Link } from "react-router";
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -52,38 +52,61 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
     offset: ["start end", "end start"],
   });
 
-  // Translate the image vertically to create a parallax effect inside its container
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  // Unique parallax for the content within the card
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  // Assertive Text parallax for 3D feel
+  const textY = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
+
+  const isEven = idx % 2 === 0;
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`group rounded-[2.5rem] relative block overflow-hidden bg-black/60 backdrop-blur-md border border-white/5 shadow-2xl aspect-4/3 ${
-        idx % 2 === 1 ? "md:mt-32" : ""
+      className={`relative w-full md:w-[85%] lg:w-[75%] flex flex-col gap-6 ${
+        isEven ? "self-start" : "self-end"
       }`}
     >
-      <motion.img
-        style={{ y, scale: 1.15 }} // Scale up slightly so edges don't show during parallax
-        src={work.image}
-        alt={work.client}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 origin-center"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="relative block overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-black/60 shadow-2xl aspect-4/5 md:aspect-video border border-white/5 group"
+      >
+        <MotionLink
+          to={`/work/${work.title.split(" ").join("-").toLowerCase()}`}
+          className="w-full h-full block"
+          data-hover-text="VIEW"
+        >
+          <motion.img
+            style={{ y: imgY, scale: 1.15, willChange: "transform" }}
+            src={work.image}
+            alt={work.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.25] origin-center"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-700 pointer-events-none" />
+        </MotionLink>
+      </motion.div>
 
-      <div className="absolute inset-0 p-8 flex flex-col justify-end bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 pointer-events-none">
-        <p className="text-SoftApricot text-sm font-bold tracking-[0.2em] uppercase mb-2">
-          {work.role}
+      {/* Breakout Typography Layout */}
+      <motion.div
+        style={{ y: textY }}
+        className={`absolute top-auto bottom-4 md:bottom-12 pointer-events-none flex flex-col z-20 ${
+          isEven
+            ? "left-6 -right-6 md:left-auto md:-right-24 text-left md:text-right items-start md:items-end"
+            : "right-6 -left-6 md:right-auto md:-left-24 text-right md:text-left items-end md:items-start"
+        }`}
+      >
+        <p className="text-VanillaCustard text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
+          {work.format || "Selected Work"}
         </p>
-        <h3 className="text-3xl font-bold uppercase text-white">
-          {work.client}
+        <h3 className="text-5xl md:text-7xl lg:text-[7rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk">
+          {work.title}
         </h3>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -157,16 +180,6 @@ export default function Home() {
     [0.15, 0.4, 0.7, 0.9],
     ["8%", "-5%", "12%", "-8%"],
   );
-  // const galleryXStep1 = useTransform(
-  //   ourWorkScroll,
-  //   [0.2, 0.5, 0.8],
-  //   ["0%", "-2%", "1%"],
-  // );
-  // const galleryRotate1 = useTransform(
-  //   ourWorkScroll,
-  //   [0.3, 0.6],
-  //   ["0deg", "0.5deg"],
-  // );
 
   // Column 2: More pronounced movement with opposite horizontal drift
   const galleryYStep2 = useTransform(
@@ -174,20 +187,6 @@ export default function Home() {
     [0.1, 0.35, 0.65, 0.85],
     ["15%", "-12%", "18%", "-15%"],
   );
-  // const galleryXStep2 = useTransform(
-  //   ourWorkScroll,
-  //   [0.25, 0.55, 0.75],
-  //   ["0%", "3%", "-2%"],
-  // );
-  // const galleryRotate2 = useTransform(
-  //   ourWorkScroll,
-  //   [0.4, 0.7],
-  //   ["0deg", "-0.3deg"],
-  // );
-
-  // Add depth scaling for parallax layers
-  // const galleryScale1 = useTransform(ourWorkScroll, [0.2, 0.8], [1, 1.02]);
-  // const galleryScale2 = useTransform(ourWorkScroll, [0.25, 0.75], [1, 0.98]);
 
   // Cross-section depth transition (Services -> Work)
   const { scrollYProgress: transitionScroll } = useScroll({
@@ -199,7 +198,7 @@ export default function Home() {
   const servicesYOut = useTransform(transitionScroll, [0, 1], ["0%", "-10%"]);
 
   return (
-    <div className="bg-[#0a0a0a] text-white selection:bg-SoftApricot selection:text-black overflow-hidden relative">
+    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black overflow-hidden relative">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen">
         <motion.div
@@ -213,10 +212,10 @@ export default function Home() {
               urls={HERO_VIDEOS}
               interval={10000}
               overlayContent={
-                <div className="relative z-20 text-center text-white px-4">
+                <div className="relative z-20 text-center text-TextWhite px-4">
                   {/* Dark lens overlay for text readability */}
                   <div className="absolute inset-0 -inset-x-20 -inset-y-10 bg-black/20 blur-3xl rounded-full scale-150 pointer-events-none" />
-                  
+
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -227,26 +226,35 @@ export default function Home() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] uppercase"
+                      className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 uppercase font-Grotesk mix-blend-difference"
                     >
                       Jaaga Studios
                     </motion.h1>
-                    
+
                     {/* Cinematic accent line */}
-                    <motion.div 
+                    <motion.div
                       initial={{ width: 0, opacity: 0 }}
                       animate={{ width: "40%", opacity: 1 }}
-                      transition={{ duration: 1.5, delay: 0.6, ease: "circOut" }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 0.6,
+                        ease: "circOut",
+                      }}
                       className="h-px bg-linear-to-r from-transparent via-VanillaCustard to-transparent mx-auto mb-8"
                     />
 
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.4,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                       className="text-lg md:text-2xl lg:text-3xl font-light tracking-[0.4em] opacity-90 uppercase text-VanillaCustard drop-shadow-md"
                     >
-                      Creative Designer & VFX Director
+                      Engineering the Future of <br /> African Cinematic
+                      Universes.
                     </motion.p>
                   </motion.div>
                 </div>
@@ -260,7 +268,7 @@ export default function Home() {
       <section
         ref={aboutRef}
         id="about"
-        className="py-40 px-6 md:px-12 lg:px-24 max-w-[1350px] mx-auto relative z-10 bg-[#0a0a0a]"
+        className="py-40 px-6 md:px-12 lg:px-24 max-w-[1350px] mx-auto relative z-10 bg-DarkBg"
       >
         <div className="max-w-5xl">
           <motion.div
@@ -278,14 +286,12 @@ export default function Home() {
             </motion.h2>
             <motion.p
               style={{ y: aboutTextY }}
-              className="text-3xl md:text-5xl lg:text-6xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4"
+              className="text-3xl md:text-5xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4 font-Grotesk"
             >
-              I don’t chase trends. I outgrow them. I care about the work — how
-              it hits, how it feels, and whether it still matters years from
-              now. Design. Motion. VFX. Built to last.
+              We don’t just render; we architect. We anchor raw African narratives with heavy cinematic rigor and AI-native scale. We don't chase the future—we build the universes where it lives. VFX. World-Building. Absolute Command.
               <br />
-              <span className="text-white/40 block mt-8 text-2xl md:text-4xl">
-                That’s it. That’s the pitch.
+              <span className="text-white/40 block mt-8 text-2xl md:text-4xl font-sans">
+                That’s the mandate.
               </span>
             </motion.p>
           </motion.div>
@@ -333,7 +339,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="group flex flex-col"
               >
-                <h3 className="text-3xl md:text-4xl font-bold uppercase mb-6 text-VanillaCustard">
+                <h3 className="text-3xl md:text-4xl font-bold uppercase mb-6 text-VanillaCustard font-Grotesk">
                   {service.title}
                 </h3>
                 <p className="text-lg text-white/60 mb-10 leading-relaxed font-light">
@@ -360,7 +366,7 @@ export default function Home() {
       <section
         ref={workRef}
         id="work"
-        className="relative z-10 w-full bg-[#0a0a0a] rounded-t-[3rem] md:rounded-t-[5rem] -mt-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+        className="relative z-10 w-full bg-DarkBg rounded-t-[3rem] md:rounded-t-[5rem] -mt-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
       >
         {/* Layer 1 (Background): fixed Focal Text */}
         {/* It pins to the top and stays behind the cards until the section ends */}
@@ -388,7 +394,7 @@ export default function Home() {
               +
             </div>
 
-            <h2 className="text-[20vw] md:text-[16vw] xl:text-[14vw] font-black uppercase leading-[0.8] tracking-tighter text-white text-center">
+            <h2 className="text-[20vw] md:text-[16vw] xl:text-[14vw] font-black uppercase leading-[0.8] tracking-tighter text-TextWhite text-center">
               MY
               <br />
               WORK
@@ -396,10 +402,10 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Layer 2 (Foreground): The Gallery Grid */}
+        {/* Layer 2 (Foreground): The Cinematic Exhibition */}
         {/* Uses a massive top padding so the sticky text is alone for exactly one viewport height before cards slide up */}
-        <div className="relative z-10 w-full max-w-[1350px] mx-auto px-6 md:px-12 lg:px-24 pt-[80vh] pb-40">
-          <div className="flex justify-between items-end mb-10 md:mb-20 py-8 border-b border-white/5">
+        <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 pt-[80vh] pb-40">
+          <div className="flex justify-between items-end mb-20 md:mb-32 py-8 border-b border-white/5">
             <motion.h2
               style={{ x: workTitleX }}
               initial={{ opacity: 0 }}
@@ -407,7 +413,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-sm font-bold tracking-[0.3em] uppercase text-SoftApricot whitespace-nowrap"
             >
-              003 / Selected Work
+              003 / Case Studies
             </motion.h2>
             <MotionLink
               to="/work"
@@ -415,39 +421,26 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-sm font-bold tracking-[0.2em] uppercase text-white hover:text-SoftApricot transition-colors flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-SoftApricot/50"
+              className="text-sm font-bold tracking-[0.2em] uppercase text-TextWhite hover:text-SoftApricot transition-colors flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-SoftApricot/50"
               aria-label="View all projects in the work archive"
             >
-              View <span className="hidden md:block">Archive</span>{" "}
+              Explore <span className="hidden md:block">Archive</span>{" "}
               <ArrowUpRight size={16} />
             </MotionLink>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            <motion.div
-              style={{ y: galleryYStep1 }}
-              className="flex flex-col gap-8 lg:mt-24"
-            >
-              {WORKS.filter((_, idx) => idx % 2 === 0).map((work, idx) => (
-                <WorkItem key={work.client} work={work} idx={idx} />
-              ))}
-            </motion.div>
-
-            {/* Column 2 */}
-            <motion.div
-              style={{ y: galleryYStep2 }}
-              className="flex flex-col gap-8"
-            >
-              {WORKS.filter((_, idx) => idx % 2 !== 0).map((work, idx) => (
-                <WorkItem key={work.client} work={work} idx={idx} />
-              ))}
-            </motion.div>
+          <div className="relative flex flex-col gap-24 md:gap-40 lg:gap-52 w-full mt-10">
+            {WORKS.map((work, idx) => (
+              <WorkItem key={work.title} work={work} idx={idx} />
+            ))}
           </div>
         </div>
       </section>
 
       {/* Shared Contact Footer */}
-      <ContactCTA title="Got a vision? Let's bring it to life." />
+      <Suspense fallback={<SuspenseUi />}>
+        <ContactCTA title="Got a vision? Let's bring it to life." />
+      </Suspense>
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function Work() {
   };
 
   return (
-    <div className="bg-[#0a0a0a] text-white selection:bg-SoftApricot selection:text-black py-4">
+    <div className="bg-DarkBg text-TextWhite selection:bg-SoftApricot selection:text-black py-4">
       <Suspense fallback={<SuspenseUi />}>
         <PageWrapper>
           <PageSection index={0}>
@@ -50,7 +50,7 @@ export default function Work() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mx-auto text-sm font-bold tracking-[0.3em] uppercase text-SoftApricot my-10"
+              className="mx-auto text-sm font-bold tracking-[0.3em] uppercase text-SoftApricot my-10 font-Grotesk"
             >
               Projects
             </motion.h2>
@@ -68,10 +68,10 @@ export default function Work() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-16 pb-32"
           >
             {WORKS.map((work, idx) => (
-              <WorkCards 
-                key={idx} 
-                work={work} 
-                idx={idx} 
+              <WorkCards
+                key={idx}
+                work={work}
+                idx={idx}
                 isPlaying={activeVideoIdx === idx}
                 onPlayToggle={() => handleVideoToggle(idx)}
               />
