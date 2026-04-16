@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function Cursor() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [hoverText, setHoverText] = useState("");
 
   const mouseX = useMotionValue(0);
@@ -31,6 +32,10 @@ export default function Cursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
+      // Check if we should hide the custom cursor entirely
+      const shouldHide = target.closest("[data-cursor-hide]");
+      setIsHidden(!!shouldHide);
+
       // Look up the DOM tree for a [data-hover-text] attribute
       const magneticElement = target.closest("[data-hover-text]") as HTMLElement;
       
@@ -56,15 +61,16 @@ export default function Cursor() {
 
   return (
     <motion.div
-      className="cursor-dot fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="cursor-dot fixed top-0 left-0 flex items-center justify-center rounded-full pointer-events-none z-9999 mix-blend-difference"
       style={{
         x: springX,
         y: springY,
       }}
       animate={{
-        width: isHovered ? 80 : 32,
-        height: isHovered ? 80 : 32,
-        backgroundColor: isHovered ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 1)",
+        width: isHidden ? 0 : (isHovered ? 80 : 32),
+        height: isHidden ? 0 : (isHovered ? 80 : 32),
+        opacity: isHidden ? 0 : 1,
+        backgroundColor: "rgba(255, 255, 255, 1)",
         x: isHovered ? "-24px" : "0px", // adjust center offset on grown state
         y: isHovered ? "-24px" : "0px",
       }}
@@ -72,7 +78,10 @@ export default function Cursor() {
     >
       <motion.span
         initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
+        animate={{ 
+          opacity: isHovered && !isHidden ? 1 : 0,
+          scale: !isHidden ? 1 : 0
+        }}
         className="text-[10px] font-black tracking-[0.2em] uppercase text-black"
       >
         {hoverText}

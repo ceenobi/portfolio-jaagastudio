@@ -102,7 +102,7 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
         <p className="text-VanillaCustard text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
           {work.format || "Selected Work"}
         </p>
-        <h3 className="text-5xl md:text-7xl lg:text-[7rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk wrap-break-word break-all md:wrap-break-word">
+        <h3 className="text-4xl md:text-7xl lg:text-8xl xl:text-[8rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk wrap-break-word">
           {work.title}
         </h3>
       </motion.div>
@@ -286,7 +286,7 @@ export default function Home() {
             </motion.h2>
             <motion.p
               style={{ y: aboutTextY }}
-              className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4 font-Grotesk"
+              className="text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl font-medium leading-tight md:leading-tight lg:leading-tight text-white/90 md:w-3/4 font-Grotesk"
             >
               We don’t just render; we architect. We anchor raw African
               narratives with heavy cinematic rigor and AI-native scale. We
@@ -407,7 +407,7 @@ export default function Home() {
 
         {/* Layer 2 (Foreground): The Cinematic Exhibition */}
         {/* Uses a massive top padding so the sticky text is alone for exactly one viewport height before cards slide up */}
-        <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 pt-[80vh] pb-40">
+        <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 pt-[20vh] pb-40">
           <div className="flex justify-between items-end mb-20 md:mb-32 py-8 border-b border-white/5">
             <motion.h2
               style={{ x: workTitleX }}
@@ -427,7 +427,7 @@ export default function Home() {
               className="text-sm font-bold tracking-[0.2em] uppercase text-TextWhite hover:text-SoftApricot transition-colors flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-SoftApricot/50"
               aria-label="View all projects in the work archive"
             >
-              Explore <span className="hidden md:block">Archive</span>{" "}
+              Explore <span className="hidden md:block">Works</span>{" "}
               <ArrowUpRight size={16} />
             </MotionLink>
           </div>

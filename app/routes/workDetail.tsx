@@ -136,7 +136,7 @@ export default function WorkDetail() {
             <motion.div
               style={{ scale: videoScale, rotateX: videoRotate, willChange: "transform" }}
               className="w-full mx-auto my-16 md:my-32 relative z-10 perspective-1000"
-              data-hover-text="DRAG / PLAY"
+              data-cursor-hide
             >
               <div className="relative group rounded-3xl md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] w-full aspect-4/3 md:aspect-video lg:aspect-21/9">
                 <video
