@@ -101,7 +101,12 @@ export default function Profile() {
     >
       <PageWrapper>
         <motion.div
-          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+          style={{ 
+            opacity: heroOpacity, 
+            scale: heroScale, 
+            y: heroY,
+            willChange: "transform, opacity"
+          }}
           className="relative z-0"
         >
           <PageSection index={0}>
@@ -111,12 +116,12 @@ export default function Profile() {
             <div className="flex flex-col gap-4">
               <GradualSpacing
                 text="Headquartered in Lagos, Nigeria, Jaaga Studios is a premier digital animation and VFX house specializing in high-end, AI-native filmmaking. We bridge the gap between authentic African street culture and top-tier global commercial production. We do not just adopt new technology; we command it to build expansive, culturally resonant cinematic universes."
-                className="text-3xl md:text-4xl lg:text-5xl font-medium md:leading-tight text-white/90"
+                className="text-3xl md:text-4xl lg:text-[3rem] font-medium md:leading-tight text-white/90"
               />
               <div className="mt-6">
                 <GradualSpacing
                   text="Available for collaborations & creative direction."
-                  className="text-white/40 text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight"
+                  className="text-white/40 text-2xl md:text-3xl font-medium tracking-tight"
                   delayPerChar={0.09}
                 />
               </div>
@@ -150,7 +155,7 @@ export default function Profile() {
           }}
           className="relative z-10"
         >
-          <PageSection index={1} className="mt-20 lg:mt-32 pb-48 px-0">
+          <PageSection index={1} className="pb-48 px-0">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
               {/* ── Left: Immersive Image with Parallax ── */}
               <div
@@ -168,6 +173,7 @@ export default function Profile() {
                     style={{
                       y: useTransform(scrollYProgress, [0, 1], [-120, 120]),
                       scale: 1.25,
+                      willChange: "transform"
                     }}
                     className="w-full h-full"
                   >

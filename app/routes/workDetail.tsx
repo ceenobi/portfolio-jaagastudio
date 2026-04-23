@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { WORKS } from "~/lib/constants";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { usePerformance } from "~/hooks/usePerformance";
 
 export function meta({ params }: { params: { workId: string } }) {
   return [
@@ -23,6 +24,7 @@ export function meta({ params }: { params: { workId: string } }) {
 }
 
 export default function WorkDetail() {
+  const { isLowPower } = usePerformance();
   const { workId } = useParams();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -58,9 +60,9 @@ export default function WorkDetail() {
   const videoScale = useTransform(
     scrollYProgress,
     [0.1, 0.4, 0.7],
-    [0.9, 1, 0.95],
+    isLowPower ? [1, 1, 1] : [0.9, 1, 0.95],
   );
-  const videoRotate = useTransform(scrollYProgress, [0.1, 0.4], [5, 0]);
+  const videoRotate = useTransform(scrollYProgress, [0.1, 0.4], isLowPower ? [0, 0] : [5, 0]);
 
   const togglePlay = () => {
     if (videoRef.current) {

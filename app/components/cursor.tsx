@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePerformance } from "~/hooks/usePerformance";
 
 export default function Cursor() {
+  const { isLowPower } = usePerformance();
   const [isHovered, setIsHovered] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [hoverText, setHoverText] = useState("");
@@ -9,8 +11,13 @@ export default function Cursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springX = useSpring(mouseX, { stiffness: 500, damping: 28, mass: 0.5 });
-  const springY = useSpring(mouseY, { stiffness: 500, damping: 28, mass: 0.5 });
+  // Simplified spring physics for low power devices
+  const springConfig = isLowPower 
+    ? { stiffness: 1000, damping: 50, mass: 0.1 } // Almost instant, less "springy" math
+    : { stiffness: 500, damping: 28, mass: 0.5 };
+
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
 
   const [hasPointer, setHasPointer] = useState(false);
 

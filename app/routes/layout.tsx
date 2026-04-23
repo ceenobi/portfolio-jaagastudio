@@ -9,7 +9,16 @@ export default function RootLayout() {
   const location = useLocation();
 
   return (
-    <ReactLenis root>
+    <ReactLenis 
+      root 
+      options={{ 
+        lerp: 0.08, 
+        smoothWheel: true,
+        wheelMultiplier: 1.1,
+        touchMultiplier: 1.5,
+        infinite: false 
+      }}
+    >
       <div className="grain-overlay" />
       <Cursor />
       <Navbar />
@@ -17,10 +26,11 @@ export default function RootLayout() {
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
-            initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
+            initial={{ opacity: 0, scale: 0.99, filter: "blur(4px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 1.02, filter: "blur(10px)" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, scale: 1.01, filter: "blur(4px)" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{ willChange: "transform, opacity, filter" }}
           >
             <Outlet />
           </motion.div>

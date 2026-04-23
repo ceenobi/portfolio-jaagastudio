@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SERVICES, WORKS, HERO_VIDEOS } from "~/lib/constants";
+import { usePerformance } from "~/hooks/usePerformance";
 
 const VideoCarousel = lazy(() => import("~/components/videoComponent"));
 const ContactCTA = lazy(() => import("~/components/contactCta"));
@@ -52,10 +53,12 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
     offset: ["start end", "end start"],
   });
 
+  const { isLowPower } = usePerformance();
+
   // Unique parallax for the content within the card
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const imgY = useTransform(scrollYProgress, [0, 1], isLowPower ? ["-5%", "5%"] : ["-10%", "10%"]);
   // Assertive Text parallax for 3D feel
-  const textY = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], isLowPower ? ["10%", "-10%"] : ["30%", "-30%"]);
 
   const isEven = idx % 2 === 0;
 
@@ -99,10 +102,10 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
             : "right-4 left-4 md:right-auto md:-left-24 text-right md:text-left items-end md:items-start"
         }`}
       >
-        <p className="text-VanillaCustard text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg">
+        <p className="text-VanillaCustard text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-4 drop-shadow-lg" style={{ willChange: "transform" }}>
           {work.format || "Selected Work"}
         </p>
-        <h3 className="text-4xl md:text-7xl lg:text-8xl xl:text-[8rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk wrap-break-word">
+        <h3 className="text-4xl md:text-7xl lg:text-8xl xl:text-[8rem] font-black uppercase text-white leading-[0.85] tracking-tighter drop-shadow-2xl font-Grotesk wrap-break-word" style={{ willChange: "transform" }}>
           {work.title}
         </h3>
       </motion.div>
@@ -111,6 +114,7 @@ const WorkItem = ({ work, idx }: { work: (typeof WORKS)[0]; idx: number }) => {
 };
 
 export default function Home() {
+  const { isLowPower } = usePerformance();
   const heroRef = useRef(null);
   const aboutRef = useRef(null);
   const servicesRef = useRef(null);
@@ -168,9 +172,9 @@ export default function Home() {
   const ourWorkBlurRadius = useTransform(
     ourWorkScroll,
     [0, 0.35, 0.5, 1],
-    [20, 15, 0, 0],
+    isLowPower ? [0, 0, 0, 0] : [20, 15, 0, 0], // Disable expensive blur on low power
   );
-  const ourWorkY = useTransform(ourWorkScroll, [0.3, 1], ["0%", "40%"]);
+  const ourWorkY = useTransform(ourWorkScroll, [0.3, 1], isLowPower ? ["0%", "20%"] : ["0%", "40%"]);
   const ourWorkFilter = useMotionTemplate`blur(${ourWorkBlurRadius}px)`;
 
   // Professional-grade parallax for gallery columns
@@ -268,7 +272,7 @@ export default function Home() {
       <section
         ref={aboutRef}
         id="about"
-        className="py-40 px-6 md:px-12 lg:px-24 max-w-[1350px] mx-auto relative z-10 bg-DarkBg"
+        className="py-40 px-6 md:px-12 lg:px-24 max-w-337.5 mx-auto relative z-10 bg-DarkBg"
       >
         <div className="max-w-5xl">
           <motion.div
@@ -319,7 +323,7 @@ export default function Home() {
             opacity: servicesOpacity,
             y: servicesYOut,
           }}
-          className="max-w-[1400px] mx-auto relative z-10"
+          className="max-w-337.5 mx-auto relative z-10"
         >
           <motion.h2
             style={{ x: servicesTitleX }}
@@ -335,7 +339,10 @@ export default function Home() {
             {SERVICES.map((service, idx) => (
               <motion.div
                 key={service.title}
-                style={{ y: servicesYTransforms[idx] }}
+                style={{ 
+                  y: servicesYTransforms[idx],
+                  willChange: "transform, opacity" 
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -380,6 +387,7 @@ export default function Home() {
               opacity: ourWorkOpacity,
               filter: ourWorkFilter,
               y: ourWorkY,
+              willChange: "transform, opacity, filter"
             }}
             className="relative w-full max-w-4xl px-4"
           >
@@ -407,7 +415,7 @@ export default function Home() {
 
         {/* Layer 2 (Foreground): The Cinematic Exhibition */}
         {/* Uses a massive top padding so the sticky text is alone for exactly one viewport height before cards slide up */}
-        <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 pt-[20vh] pb-40">
+        <div className="relative z-10 w-full max-w-337.5 mx-auto px-6 md:px-12 pt-[20vh] pb-40">
           <div className="flex justify-between items-end mb-20 md:mb-32 py-8 border-b border-white/5">
             <motion.h2
               style={{ x: workTitleX }}
@@ -440,7 +448,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 w-full max-w-[1500px] mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-white/5 overflow-hidden">
+      <section className="relative z-10 w-full max-w-337.5 mx-auto px-6 md:px-12 py-32 md:py-48 border-t border-white/5 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           {/* Section 8 Left: Sticky Intro */}
           <div className="lg:col-span-5 lg:sticky lg:top-32">
@@ -522,7 +530,7 @@ export default function Home() {
       </section>
 
       {/* Section IX: Key Art & Poster Division */}
-      <section className="relative w-full max-w-[1500px] mx-auto px-6 md:px-12 py-20 md:py-32 mb-20 md:mb-32 overflow-hidden">
+      <section className="relative w-full max-w-337.5 mx-auto px-6 md:px-12 py-20 md:py-32 mb-20 md:mb-32 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
