@@ -6,6 +6,9 @@ export default {
   // Config options...
   // Server-side render by default, to enable SPA mode set this to `false`
   ssr: true,
+  routeDiscovery: {
+    mode: "initial",
+  },
   async prerender() {
     const workPaths = WORKS.map(
       (work) => `/work/${work.title.split(" ").join("-").toLowerCase()}`,
