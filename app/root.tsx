@@ -82,10 +82,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_60%)] animate-pulse-slow" />
         <div
           className="absolute inset-0 opacity-[0.2]"
-          style={{
-            backgroundImage:
-              "url('https://res.cloudinary.com/ceenobi/image/upload/v1698242371/noise_lqz7vx.png')",
-          }}
+          // style={{
+          //   backgroundImage:
+          //     "url('https://res.cloudinary.com/ceenobi/image/upload/v1698242371/noise_lqz7vx.png')",
+          // }}
         />
       </div>
 
