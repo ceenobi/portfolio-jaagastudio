@@ -32,7 +32,8 @@ export const getCloudinaryVideo = (
   if (!url.includes("res.cloudinary.com")) return url;
   const pathParts = url.split("upload/");
   if (pathParts.length !== 2) return url;
-  return `${pathParts[0]}upload/c_fill,w_${width},h_${height},f_auto,q_${quality}/${pathParts[1]}`;
+  // Enhanced delivery with vc_auto for automatic codec selection
+  return `${pathParts[0]}upload/c_fill,w_${width},h_${height},f_auto,q_${quality},vc_auto/${pathParts[1]}`;
 };
 
 /**

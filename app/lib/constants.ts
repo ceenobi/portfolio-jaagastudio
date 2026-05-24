@@ -41,8 +41,8 @@ export const WORKS = [
     image:
       "https://res.cloudinary.com/ceenobi/image/upload/e_auto_enhance,f_auto,q_auto:best/v1776164378/clientproject/havisClient/download_em0mxd_poster.jpg",
     video:
-      "https://res.cloudinary.com/ceenobi/video/upload/e_auto_enhance,f_auto,q_auto/v1776164131/clientproject/havisClient/download_em0mxd.mp4",
-    site: "https://bcc007pay.vercel.app/",
+      "https://res.cloudinary.com/ceenobi/video/upload/f_auto,q_auto:best,vc_auto/v1776164131/clientproject/havisClient/download_em0mxd.mp4",
+    site: "#",
     desc: "The Snap is a visceral, high-stakes psychological thriller that turns an iconic Lagos commute into a claustrophobic nightmare. The narrative ignites from a single, fatal moment of disrespect between a conductor and a female passenger. That single 'snap' unleashes a sudden, terrifying wave of zombie-like violence and absolute chaos inside the moving vehicle.\n\nAs the violent frenzy overtakes the passengers and reaches the driver, the bus inevitably crashes. The trailer follows Kokumo, the lone survivor, as he emerges from the wreckage and makes his way home. Brilliantly leveraging ambiguity and tension, the film leaves the audience with a lingering, heavy psychological dread: Kokumo survived the crash, but it is entirely unknown if he brought something dangerous home with him. Recognized by the GenFlix Founding 100, this project proves Jaaga Studios’ mastery of top-tier AI compositing, environmental lighting, and gripping, suspense-driven storytelling.",
     stack: [
       "Format: Psychological Thriller / Spec Trailer",
@@ -57,8 +57,8 @@ export const WORKS = [
     image:
       "https://res.cloudinary.com/ceenobi/image/upload/e_auto_enhance,f_auto,q_100/v1776164874/clientproject/havisClient/download_1_lriyy2_poster.jpg",
     video:
-      "https://res.cloudinary.com/ceenobi/video/upload/e_auto_enhance,f_auto,q_auto/v1776164801/clientproject/havisClient/download_1_lriyy2.mp4",
-    site: "https://bcc007pay.vercel.app/",
+      "https://res.cloudinary.com/ceenobi/video/upload/f_auto,q_auto:best,vc_auto/v1776164801/clientproject/havisClient/download_1_lriyy2.mp4",
+    site: "#",
     desc: 'Legend of Adesua is a heavy, culturally grounded cinematic narrative set against the majestic, historical backdrop of the Benin Kingdom. When the power grid completely collapses, plunging the kingdom into absolute darkness amidst a crippling fuel scarcity, the city is left paralyzed, anxious, and unable to sleep.\n\nThe film introduces Adesua—a monumental, original legend within the Jaaga Studios cinematic universe, known to the streets as "Mama Nepa." Emerging from the blackout, she becomes a beacon of absolute resilience, fighting against the darkness to restore electricity and bring the hope of light back to her people. By merging the regal aesthetic of the Benin Kingdom with a high-stakes energy crisis, Jaaga Studios turns a deeply relatable struggle into a breathtaking Afrofuturist epic. It is a masterclass in using top-tier AI generative tools to bridge ancient African heritage with advanced sci-fi storytelling, commanding attention on the global stage.',
     stack: [
       "Afrofuturist Narrative / CGI Short",
@@ -72,8 +72,8 @@ export const WORKS = [
     image:
       "https://res.cloudinary.com/ceenobi/image/upload/e_auto_enhance,f_auto,q_100/v1776246544/clientproject/havisClient/copy_AFA459DC-3004-4CD3-9401-DE0F0728C90E_fhryni_poster.jpg",
     video:
-      "https://res.cloudinary.com/ceenobi/video/upload/e_auto_enhance,f_auto,q_auto/v1776163758/clientproject/havisClient/copy_AFA459DC-3004-4CD3-9401-DE0F0728C90E_fhryni.mov",
-    site: "https://bcc007pay.vercel.app/",
+      "https://res.cloudinary.com/ceenobi/video/upload/f_auto,q_auto:best,vc_auto/v1776163758/clientproject/havisClient/copy_AFA459DC-3004-4CD3-9401-DE0F0728C90E_fhryni.mov",
+    site: "#",
     desc: "Bumbum: The Aura Heist is a high-octane, narrative-driven blockbuster that expands the official Jaaga Studios Cinematic Universe. Blending hyper-luxury aesthetics with a gritty, modern-day Robin Hood narrative, this project is far more than a music visualizer—it is a story of wealth redistribution executed with absolute precision.\n\nThe film opens in the gilded boardrooms of the elite, targeting corrupt politicians hoarding wealth. Enter Bimpe, Sade, and Sewa—three formidable operators within the Jaaga universe. They execute a flawless infiltration, stripping the corrupt of their cash before tearing through the neon-lit streets of Lagos in a screaming, high-speed Ferrari SF90. Backed by authentic, high-octane engine audio and relentlessly pursued by a heavy police escort, the trio ultimately crash the luxury of the elite directly into the reality of the streets, making it rain stolen cash on the people.\n\nIt is a technical flex in dynamic lighting, vehicle rendering, and crowd simulation, proving Jaaga Studios can seamlessly weave heavy socio-political narratives into explosive, commercial-grade visual spectacles.",
     stack: [
       "Format: Cinematic Music Visualizer / High-Action Short",
@@ -83,5 +83,5 @@ export const WORKS = [
 ];
 
 export const HERO_VIDEOS = [
-  "https://res.cloudinary.com/ceenobi/video/upload/q_auto/f_auto/v1776162275/clientproject/havisClient/2026-04-05_10_35_19_pusbd8.mp4",
+  "https://res.cloudinary.com/ceenobi/video/upload/f_auto,q_auto:best,vc_auto/v1776162275/clientproject/havisClient/2026-04-05_10_35_19_pusbd8.mp4",
 ];

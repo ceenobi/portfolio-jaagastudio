@@ -144,6 +144,7 @@ export default function WorkDetail() {
                 <video
                   ref={videoRef}
                   src={selectedWork?.video}
+                  poster={selectedWork?.image}
                   autoPlay
                   loop
                   muted={isMuted}
